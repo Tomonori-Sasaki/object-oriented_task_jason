@@ -5,7 +5,7 @@ class PersonValidator
   end
 
   def self.message(person)
-    return Print.invalid('>invalid input: should not be blank') if person == ''
+    return Print.error('>invalid input: should not be blank') if person == ''
   end
 
 end
