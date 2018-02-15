@@ -15,20 +15,18 @@ class Action
   def create
     puts '>Please enter the person'
     person = $stdin.gets.chomp
-    return Print.red('>invalid input: should not be blank') if person == ''
+    return PersonValidator.message(person) if PersonValidator.invalid?(person)
     puts '>Please enter the score'
-    score = $stdin.gets
-    return Print.red('>invalid input: not a number') if score !~ /^[0-9]+$/
-    return Print.red('>invalid input: less than 100') if score.to_i > 100
-    return Print.red('>invalid input: more than 0') if score.to_i < 0
-    Score.new(person, score.to_i).save
-    Print.green('>Successfully created score')
+    point = $stdin.gets
+    return PointValidator.message(point) if PointValidator.invalid?(point)
+    Score.new(person, point.to_i).save
+    Print.success('>Successfully created score')
   end
 
   def read
     puts '>Show all score'
-    Score.all.each_with_index do |(person, score), i|
-      puts "#{i + 1}.#{person},#{score}"
+    Score.all.each_with_index do |(person, point), i|
+      puts "#{i + 1}.#{person},#{point}"
     end
   end
 
@@ -36,7 +34,7 @@ class Action
     puts '>Please enter delete line number'
     input = $stdin.gets.to_i
     Score.delete(input)
-    Print.green('>Successfully deleted score')
+    Print.success('>Successfully deleted score')
   end
 
   def average
@@ -45,8 +43,8 @@ class Action
 
   def read_as_html
     Print.html('h2', '>Show all score')
-    Score.all.each_with_index do |(person, score), i|
-      Print.html('p', "#{i + 1}.#{person},#{score}")
+    Score.all.each_with_index do |(person, point), i|
+      Print.html('p', "#{i + 1}.#{person},#{point}")
     end
   end
 

@@ -1,9 +1,9 @@
 class Score
-  attr_accessor :person, :score
+  attr_accessor :person, :point
 
-  def initialize(person, score)
+  def initialize(person, point)
     @person = person
-    @score = score
+    @point = point
   end
 
   def self.all
@@ -17,7 +17,7 @@ class Score
     File.open($path) do |i|
       @results = JSON.load(i)
     end
-    @results.store("#{person}", score)
+    @results.store("#{person}", point)
     File.open($path, 'w') do |j|
       JSON.dump(@results, j)
     end

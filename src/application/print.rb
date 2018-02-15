@@ -1,9 +1,9 @@
 class Print
-  def self.green(msg)
+  def self.success(msg)
     puts "\e[32m#{msg}\e[m"
   end
 
-  def self.red(msg)
+  def self.error(msg)
     puts "\e[31m#{msg}\e[m"
   end
 
