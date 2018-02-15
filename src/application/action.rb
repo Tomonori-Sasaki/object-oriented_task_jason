@@ -33,8 +33,7 @@ class Action
 
   def delete
     puts '>Please enter delete line number'
-    line_num = $stdin.gets.to_i
-    Score.delete(line_num)
+    Score.delete($stdin.gets.to_i)
     Print.success('>Successfully deleted score')
   end
 
