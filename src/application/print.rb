@@ -1,4 +1,5 @@
 class Print
+  
   def self.success(msg)
     puts "\e[32m#{msg}\e[m"
   end

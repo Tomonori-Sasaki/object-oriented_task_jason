@@ -1,4 +1,5 @@
 class Action
+
   def initialize(action)
     @action = action
   end
@@ -32,8 +33,8 @@ class Action
 
   def delete
     puts '>Please enter delete line number'
-    input = $stdin.gets.to_i
-    Score.delete(input)
+    line_num = $stdin.gets.to_i
+    Score.delete(line_num)
     Print.success('>Successfully deleted score')
   end
 
