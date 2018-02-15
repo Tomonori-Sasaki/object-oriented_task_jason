@@ -14,18 +14,18 @@ class Score
 
   def save
     file_exist
-    @results = Score.all
-    @results.store("#{person}", point)
+    results = Score.all
+    results.store("#{person}", point)
     File.open($path, 'w') do |j|
-      JSON.dump(@results, j)
+      JSON.dump(results, j)
     end
   end
 
   def self.delete(line_num)
-    @results = Score.all
-    @results.delete_if.with_index{|(k, v), i| i == line_num - 1}
+    results = all
+    results.delete_if.with_index{|(k, v), i| i == line_num - 1}
     File.open($path, 'w') do |i|
-      JSON.dump(@results, i)
+      JSON.dump(results, i)
     end
   end
 
